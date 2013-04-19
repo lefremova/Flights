@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <description></description>
+    <name>Flights</name>
     <repositories>
 	    <repository>
 	        <id>java.net-m2</id>
