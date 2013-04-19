@@ -39,18 +39,21 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
             <scope>runtime</scope>
             <version>1.1.2</version>
         </dependency>
+
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>c</artifactId>
@@ -58,6 +61,7 @@
             <scope>runtime</scope>
             <type>tld</type>
         </dependency>
+
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>fmt</artifactId>
@@ -65,20 +69,43 @@
             <scope>runtime</scope>
             <type>tld</type>
         </dependency>
+
         <dependency>
             <groupId>jdbc</groupId>
             <artifactId>jdbc-stdext</artifactId>
             <version>2.0</version>
         </dependency>
+
         <dependency>
             <groupId>javax.sql</groupId>
             <artifactId>jdbc-stdext</artifactId>
             <version>2.0</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.24</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.2</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
