@@ -7,18 +7,15 @@
     </head>
     <body>
 
-    <form action="Auth" method="POST">
+    <form class="center" action="AuthServlet" method="POST">
         Enter username: &nbsp; <input type="text" name="uname"> <br> <br>
-        Enter password: &nbsp; <input type="password" name="upass" size=21> <br> <br>
-        <input type="submit" value="Enter"> <br> <br>
-
-        <c:if test="${not empty requestScope.message}">
-            <div style="color:red;">${requestScope.message}</div>
-        </c:if>
-
+        Enter password: &nbsp; <input type="password" name="upass"> <br> <br>
+        <input class="enter" type="submit" value="Enter"> <br> <br>
     </form>
 
-    <%-- <div style="error">${message}</div> --%>
+    <c:if test="${not empty requestScope.message}">
+        <div class="error">${requestScope.message}</div>
+    </c:if>
 
     </body>
 </html>

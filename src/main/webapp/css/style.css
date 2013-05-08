@@ -1,5 +1,27 @@
-form {
+.tableFlights {
     text-align: center;
+    border: 1pt solid #cccccc;
+    padding: 4px;
+    margin: 0px;
+    font-size: 12pt;
+}
+
+.tableFlights td {
+    text-align: center;
+    border: 1pt solid #cccccc;
+}
+
+.center {
+    text-align: center;
+}
+
+.enter {
+    width: 100px;
+}
+
+.success {
+    color: #0000ff;
+    text-align:center;
 }
 
 .error {

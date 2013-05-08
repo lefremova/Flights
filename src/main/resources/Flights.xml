@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Use camel case for tag names -->
+<flights>
+    <flight>
+        <flight_number>LY 612</flight_number>
+        <tickets_count>8</tickets_count>
+        <date>2013-05-02</date>
+    </flight>
+
+    <flight>
+        <flight_number>PS 9159</flight_number>
+        <tickets_count>12</tickets_count>
+        <date>2013-05-02</date>
+    </flight>
+
+    <flight>
+        <flight_number>EY 135</flight_number>
+        <tickets_count>14</tickets_count>
+        <date>2013-05-02</date>
+    </flight>
+</flights>
