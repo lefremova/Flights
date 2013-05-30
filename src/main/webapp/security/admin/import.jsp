@@ -1,22 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<fmt:setBundle basename="i18n.Messages" />
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <title>Adding to MySQL</title>
+        <title><fmt:message key="import.title" /></title>
     </head>
 
     <body>
 
-        <div class="center"><a href="../../LogOutServlet">Log out</a></div> <br> <br>
+        <div class="center"><a href="../../LogOutServlet"><fmt:message key="logout" /></a></div> <br> <br>
+        <div class="center"><a href="../MainPageServlet"><fmt:message key="main" /></a></div>
 
         <form class="center" action="XMLImportServlet" method="POST" enctype="multipart/form-data">
-            <input type="file" name="xml"> <br> <br>
-            <input class="enter" type="submit" value="Enter">
+            <input type="file" name="xml" > <br> <br>
+            <input class="enter" type="submit" value=<fmt:message key="submit" />>
         </form>
+
+        <c:if test="${not empty requestScope.successMessage}">
+            <div class="success">${requestScope.successMessage}</div>
+        </c:if>
 
     </body>
 </html>

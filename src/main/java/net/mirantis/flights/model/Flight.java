@@ -1,28 +1,34 @@
 package net.mirantis.flights.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * This class is used to keep information about flights that we get from the database.
+ * This class represents a flight.
  * 
  * @author Liubov Efremova
  */
-public class Flights {
+public class Flight implements Serializable {
 
     private int id;
     private String number;
     private int ticketsCount;
-    private String date;
-
-    public Flights() {}
+    private Date date;
 
     /**
-     * Creates a new instance with given values of parameters.
-     * 
-     * @param id
-     * @param number Flight number
-     * @param ticketsCount The number of available tickets
-     * @param date Departure date
+     * Creates a new instance of <code>Flight</code>.
      */
-    public Flights(int id, String number, int ticketsCount, String date) {
+    public Flight() {}
+
+    /**
+     * Creates a new instance of <code>Flight</code>.
+     * 
+     * @param id the flight id
+     * @param number the flight number
+     * @param ticketsCount the number of available tickets
+     * @param date the departure date
+     */
+    public Flight(int id, String number, int ticketsCount, Date date) {
         this.id = id;
         this.number = number;
         this.ticketsCount = ticketsCount;
@@ -30,6 +36,8 @@ public class Flights {
     }
 
     /**
+     * Returns the id of flight. 
+     * 
      * @return the id
      */
     public int getId() {
@@ -37,6 +45,8 @@ public class Flights {
     }
 
     /**
+     * Sets the id of flight.
+     * 
      * @param id the id to set
      */
     public void setId(int id) {
@@ -44,6 +54,8 @@ public class Flights {
     }
 
     /**
+     * Returns the flight number.
+     * 
      * @return the number
      */
     public String getNumber() {
@@ -51,6 +63,8 @@ public class Flights {
     }
 
     /**
+     * Sets the flight number.
+     * 
      * @param number the number to set
      */
     public void setNumber(String number) {
@@ -58,6 +72,8 @@ public class Flights {
     }
 
     /**
+     * Returns the number of available tickets of the flight.
+     * 
      * @return the ticketsCount
      */
     public int getTicketsCount() {
@@ -65,6 +81,8 @@ public class Flights {
     }
 
     /**
+     * Sets the number of available tickets of the flight.
+     * 
      * @param ticketsCount the ticketsCount to set
      */
     public void setTicketsCount(int ticketsCount) {
@@ -72,16 +90,20 @@ public class Flights {
     }
 
     /**
+     * Returns the date of the flight.
+     * 
      * @return the date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     /**
+     * Sets the date of the flight.
+     * 
      * @param date the date to set
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
