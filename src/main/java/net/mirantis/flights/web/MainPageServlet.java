@@ -3,16 +3,17 @@ package net.mirantis.flights.web;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.mirantis.flights.dao.FlightDao;
-import net.mirantis.flights.dao.FlightDaoFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.HttpRequestHandler;
 
 /**
  * Provides data for the main page that holds the table of flights available for reserving
@@ -20,57 +21,56 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Liubov Efremova
  */
-public class MainPageServlet extends HttpServlet {
+public class MainPageServlet implements HttpRequestHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(MainPageServlet.class);
-    private static final FlightDao FLIGHT_DAO = FlightDaoFactory.getFlightDao();
 
+    @Autowired
+    private FlightDao flightDao;
     private String mainJSP;
 
     /**
-     * {@inheritDoc}
+     * Sets the path to the main page of the application
+     * 
+     * @param mainJSP  the path to the main page
      */
-    @Override
-    public void init() throws ServletException {
-        mainJSP = getInitParameter("mainJSP");
+    public void setMainJSP(String mainJSP) {
+        this.mainJSP = mainJSP;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            showTable(request);
-            getServletContext().getRequestDispatcher(mainJSP).forward(request, response);
-        } catch (Exception ex) {
-            LOG.info("Exception", ex);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void doPost(HttpServletRequest request,
+    public void handleRequest(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        String[] selectedFlights = request.getParameterValues("chBox");
+        ServletContext context = request.getServletContext();
 
-        try {
-            if (selectedFlights != null) {
-                FLIGHT_DAO.updateFlights(selectedFlights);
-                ResourceBundle rb = ResourceBundle.getBundle("i18n.Messages", request.getLocale());
-                request.setAttribute("successMessage", rb.getString("success"));
+        if ("GET".equalsIgnoreCase(request.getMethod())) {
+            try {
+                showTable(request);
+                context.getRequestDispatcher(mainJSP).forward(request, response);
+            } catch (Exception ex) {
+                LOG.info("Exception", ex);
             }
-            showTable(request);
-            getServletContext().getRequestDispatcher(mainJSP).forward(request, response);
-        } catch (Exception ex) {
-            LOG.info("Exception", ex);
+        } else {
+            try {
+                String[] selectedFlights = request.getParameterValues("chBox");
+                if (selectedFlights != null) {
+                    flightDao.updateFlights(selectedFlights);
+                    ResourceBundle rb = ResourceBundle.getBundle("i18n.Messages", request.getLocale());
+                    request.setAttribute("successMessage", rb.getString("success"));
+                }
+                showTable(request);
+                context.getRequestDispatcher(mainJSP).forward(request, response);
+            } catch (Exception ex) {
+                LOG.info("Exception", ex);
+            }
         }
     }
 
-    private static void showTable(HttpServletRequest request) {
-        request.setAttribute("data", FLIGHT_DAO.selectAllFlights());
+    private void showTable(HttpServletRequest request) {
+        request.setAttribute("data", flightDao.selectAllFlights());
     }
 
 }

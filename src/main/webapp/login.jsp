@@ -8,15 +8,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="js/script.js"></script>
         <title><fmt:message key="auth.title" /></title>
     </head>
 
     <body>
 
-        <form class="center" action="AuthServlet" method="POST">
+        <form name="form" class="center" action="AuthServlet" method="POST" onsubmit="return LoginPasswordIsEmpty(form)">
             <fmt:message key="uname" /> : &nbsp; <input type="text" name="uname"> <br> <br>
             <fmt:message key="upass" /> : &nbsp; <input type="password" name="upass"> <br> <br>
-            <input class="enter" type="submit" value=<fmt:message key="enter" />> <br> <br>
+            <input class="enter" type="submit" value=<fmt:message key="enter" /> > <br> <br>
         </form>
 
         <c:if test="${not empty requestScope.message}">

@@ -2,6 +2,11 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>Flights</display-name>
 
+  <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/beans.xml</param-value>
+  </context-param>
+
   <filter>
     <filter-name>AccessCheckerFilter</filter-name>
     <filter-class>net.mirantis.flights.web.AccessCheckerFilter</filter-class>
@@ -32,6 +37,10 @@
     <url-pattern>/security/admin/*</url-pattern>
   </filter-mapping>
 
+  <listener>
+   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <resource-ref>
     <description>MySQL Datasource example</description>
     <res-ref-name>jdbc/flightschedule</res-ref-name>
@@ -50,12 +59,12 @@
 
     <init-param>
       <param-name>providerURL</param-name>
-      <param-value>ldap://example.com:389</param-value>
+      <param-value>ldap://ns.srt.mirantis.net:389</param-value>
     </init-param>
 
     <init-param>
       <param-name>securityPrincipal</param-name>
-      <param-value>uid=%s,ou=people,dc=acme,dc=com</param-value>
+      <param-value>uid=%s,ou=people,o=mirantis,dc=mirantis,dc=net</param-value>
     </init-param>
 
     <init-param>
@@ -71,22 +80,12 @@
 
   <servlet>
     <servlet-name>MainPageServlet</servlet-name>
-    <servlet-class>net.mirantis.flights.web.MainPageServlet</servlet-class>
-
-    <init-param>
-      <param-name>mainJSP</param-name>
-      <param-value>/security/main.jsp</param-value>
-    </init-param>
+    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
   </servlet>
 
   <servlet>
     <servlet-name>XMLImportServlet</servlet-name>
-    <servlet-class>net.mirantis.flights.web.XMLImportServlet</servlet-class>
-
-    <init-param>
-      <param-name>importPage</param-name>
-      <param-value>/security/admin/import.jsp</param-value>
-    </init-param>
+    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
   </servlet>
 
   <servlet>
